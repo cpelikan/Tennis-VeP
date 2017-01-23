@@ -1,7 +1,7 @@
 <template name="cupPage">
  
 
-  	<h3>Torneo {{cup.title}} <small class="pull-right">{{cup.season}}</small></h3>
+  	<h3>Torneo {{cup.title}} <small class="season pull-right">{{cup.season}}</small></h3>
 
  	<h4>Partecipanti</h4>
   	<em class="cupPlayersResume">
@@ -31,7 +31,7 @@
 					<div class="row">
 						
 						{{#if toPlay}}
-							<div class="row col-md-6 inputWrap">
+							<div class="row col-md-10 inputWrap">
 								<div class="col-xs-6">
 									<input maxlength="1" type="number" value="{{matchPlayers.p1.score}}" placeholder="-" data-pid="{{matchPlayers.p1.id}}" name="p1Score" />
 								</div>		
@@ -39,7 +39,7 @@
 									<input maxlength="1" type="number" value="{{matchPlayers.p2.score}}"  placeholder="-" data-pid="{{matchPlayers.p2.id}}" name="p2Score" />
 								</div>
 							</div>		
-							<div class="col-md-6">
+							<div class="col-md-2">
 								<input type="submit" value="Conferma" class="btn btn-primary" style="width:100%;" />
 							</div>
 						{{else}}	

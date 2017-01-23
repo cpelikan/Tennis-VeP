@@ -3,17 +3,19 @@
     {{#if notificationCount}}
       <span class="badge badge-inverse">{{notificationCount}}</span>
     {{/if}}
-    <b class="caret"></b>
+    <!--b class="caret"></b-->
   </a>
-  <ul class="notification dropdown-menu">
-    {{#if notificationCount}}
+  {{#if notificationCount}}
+  <ul class="dropdown-menu">
+    
       {{#each notifications}}
         {{> notification}}
       {{/each}}
-    {{else}}
-      <li><a href="javascript:void(0);"><span>No Notifications</span></a></li>
-    {{/if}}
+    
+     
   </ul>
+   <!-- {{else}}  li><a href="javascript:void(0);"><span>No Notifications</span></a></li-->
+    {{/if}}
 </template>
 
 <template name="notification">

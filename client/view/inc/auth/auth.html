@@ -1,0 +1,62 @@
+<template name="register">
+    <form>
+        <div class="form-group">
+            <label for="registerUsername">Username:</label>
+            <input type="text" name="registerUsername" class="form-control" />
+        </div>
+        
+        <div class="form-group">    
+            <label for="registerEmail">Email:</label>
+            <input type="email" name="registerEmail" class="form-control" />
+        </div>
+            
+        <div class="form-group">
+            <label for="registerPassword">Password:</label>
+            <input type="password" name="registerPassword" class="form-control" />
+        </div>
+        
+        <input type="submit" value="Registrati" class="btn btn-primary" />
+    </form>
+</template>
+
+
+<template name="login">
+    <form>
+            <div class="form-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" name="loginEmail" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password:</label>
+                <input type="password" name="loginPassword" class="form-control" />
+         </div>
+        <input type="submit" value="Accedi" class="btn btn-primary" />
+    </form>
+</template>
+
+<template name="logout">
+     <a class="dropdown-toggle" type="button" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="#">
+        {{currentUser.username}}
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownUser">
+        <li><a href="{{pathFor route='playerPage' _id=currentUser._id}}" >Profilo</a></li>
+        <li><a href="#" id="logout">Esci</a></li>
+    </ul>    
+</template>
+
+
+<template name="auth">
+       <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#login">Accedi</a></li>
+            <li><a data-toggle="tab" href="#register">Registrati</a></li>
+       </ul>
+       <div class="tab-content">
+            <div id="login" class="tab-pane fade in active">
+                {{> login}}
+            </div>
+            <div id="register" class="tab-pane fade">    
+                {{> register}}
+            </div>
+        </div>
+</template>
