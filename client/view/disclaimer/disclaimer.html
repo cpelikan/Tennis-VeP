@@ -1,0 +1,63 @@
+<template name="disclaimer">  
+	
+	<h1>Regole</h1>
+
+	<h2>Calcolo del ranking</h2>
+	<p>
+		Il ranking è prende in considerazione i punti guadagnati.<br />
+	</p>
+
+	<p>
+		Per ogni partita vinta si guadagna 1 punto
+	</p>
+
+	<p>
+		Per ogni torneo vinto i punti guadagnati sono variabili in funzione del tipo di torneo e il numero di partecipanti.
+	</p>
+
+	<p>
+		Sono considerate torneo tutte le modalità di sfida più di due pertecipanti.<br />
+	</p>
+
+	<h3>Calcolo dei punti sfida</h3>
+	
+	<table>
+		<tr>
+			<td>Tipo</td>
+			<td>Bonus</td>
+		</tr>
+		<tr>
+			<th>Solo andata</th>
+			<td>1</td>
+		</tr>
+		<tr>
+			<th>Andate e ritorno</th>
+			<td>2</td>
+		</tr>
+		<tr>
+			<th>Knockout</th>
+			<td>1</td>
+		</tr>
+	</table>
+
+	<p>Il bonus sarà moltiplicato al numero dei partecipanti</p>
+	
+
+	<h3>Esempio di calcolo</h3>
+
+	<p>
+		Poniamo il caso di un torneo a tre partecipanti solo andata a cui prendono parte: Ciccio, Pippo e Tizio.<br />
+		Nell'ipotesi in cui Ciccio vinca tutti e tre le partite avrà 3 punti (uno per ogni partita) più il premio torneo che in questo caso sarà calcolato a 6.<br />
+		Quindi Ciccio avrà totalizzato 6 punti nel ranking.  
+		Pippo che ha vinto la sola sfida contro Tizio avrà totalizzato 1 punto, mentre Tizio avendo perso tutte le partite resterà a 0 punti.
+	</p>
+
+	<p>
+		NB:<br /> 
+		Non sono assegnati punti per le partite di spareggio
+		<br />
+		La modalità solo andata e andata ritorno con due partecipanti non è considerata torneo
+	</p>
+
+	
+</template>

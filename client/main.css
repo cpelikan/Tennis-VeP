@@ -1,0 +1,30 @@
+/* CSS declarations go here */
+#main{padding:0 15px;}
+
+ .winner{color:#00a651;}
+ .inputWrap{padding-bottom:1rem;}
+ .inputWrap input{width:6rem;}
+ .list-group{margin:0 -15px;}
+ .table-striped{margin:1rem -8px 0 -8px;}
+.list-group-item:nth-child(odd){background:#EcEcEc;}
+h3, h4{color:#808080;}
+h4{margin-top:2rem;}
+.cupPlayersResume{display:block; border-bottom:solid .1rem #ececec; padding:1rem 0;}
+.cupPlayersResume strong:after{content:', ';}
+.cupPlayersResume strong:last-child:after{content:'';}
+/*
+.navbar-default{background:#00a651; color:#FFF;}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{background:rgba(0,0,0,0.1); color:#FFF;}
+
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:visited, .navbar-default .navbar-nav > li > a:hover{color:#FFF;}
+.navbar-default .navbar-nav > li > a:hover{background:rgba(0,0,0,0.1);}
+.navbar-default a.navbar-brand, .navbar-default a.navbar-brand:visited, .navbar-default  a.navbar-brand:hover{color:#FFF;}
+.navbar-default .navbar-toggle .icon-bar{color:#00a651;}
+.navbar-default .navbar-toggle, .navbar-default .navbar-toggle:active{background:#FFF; color:#00a651; border:solid 0.1rem rgba(0,0,0,0.1);}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{background:rgba(0,0,0,0.1); color:#FFF; border:solid 0.1rem rgba(0,0,0,0.1);}
+
+.btn-primary{ color: #fff; background-color: #00a651; border-color: #016f37;}
+
+.btn-primary:hover{color: #fff; background-color: #016f37; border-color: #00a651;}
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{background:#e1613a;}*/

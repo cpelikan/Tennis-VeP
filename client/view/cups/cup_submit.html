@@ -1,0 +1,48 @@
+<template name="cupSubmit">
+  <form class="main">
+    
+     <div class="form-group">
+        <label class="form-label" for="title">Nome torneo</label>
+        <div>
+            <input class="form-control"  name="title" type="text" value="" placeholder="Nome del torneo"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label" for="url">Periodo</label>
+        <div>
+            <input class="form-control" name="season" type="month" value="" placeholder="Il mese in cui avrà inizio il torneo"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="url">Partecipanti</label>
+       
+        <div>
+            {{#Multiselect name='players' options=myOptions selected=selectedOptions }}
+                <option value="{{ _id }}" {{ attrs }}>{{ caption }}</option>
+              {{/Multiselect}}
+          </div>    
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="url">Tipo</label>
+       
+        <div>
+            <select id="tournType" class="form-control" >
+                <option value="0">-------------</option>
+                <option value="1">Solo andata</option>
+                <option value="2">Andata e ritorno</option>
+                <option value="3">KnockOut</option>
+            </select>
+          </div>    
+    </div>
+
+   <!--div id="add" class="metroBtn">Add Bracket</div>
+    <div class="brackets" id="brackets"></div-->
+
+    <div class="form-group">
+        <div class="form">
+            <input type="submit" value="Crea" class="btn btn-primary"/>
+        </div>
+    </div>
+  </form>
+</template>

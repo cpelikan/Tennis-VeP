@@ -1,0 +1,43 @@
+<template name="stats">
+
+ 	<h3>Ranking</h3>
+  	
+  	
+	<!--{{#each table}}
+		<li>
+			{{this.username}}
+			{{this.winning}}
+			{{this.deltaMatch}}
+		</li>	
+	{{/each}}
+	-->
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th></th>
+					<th class="text-center">Punti</th>
+					<th class="text-center">Trofei</th>
+					<th class="text-center">Vittorie</th>	
+				</tr>
+			</thead>
+			<tbody>
+			{{#each rankinglist}}
+		    	<tr>
+			      <td>{{offset @index}}</td>
+			      <th scope="row">{{username}}</th>
+			      <td class="text-center">{{points}}</td>
+			      <td class="text-center">{{cupsWon}}</td>
+			      <td class="text-center">{{matchesWon}}</td>
+		      </tr>
+		  {{/each}}
+		  </tbody>		
+		 </table> 
+		 
+
+
+	
+
+
+</template>
