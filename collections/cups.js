@@ -39,7 +39,7 @@ Meteor.methods({
     }
 
     // pick out the whitelisted keys
-    var cup = _.extend(_.pick(cupAttributes, 'title', 'season', 'players', 'type', 'winner', 'bonus'), {
+    var cup = _.extend(_.pick(cupAttributes, 'title', 'season', 'players', 'type', 'winner', 'bonus', 'done'), {
       userId: user._id,
       author: user.username,
       submitted: new Date().getTime()

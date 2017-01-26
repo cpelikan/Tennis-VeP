@@ -1,9 +1,9 @@
 <template name="cupPage">
  
-
-  	<h3>Torneo {{cup.title}} <small class="season pull-right">{{cup.season}}</small></h3>
-
- 	<h4>Partecipanti</h4>
+  	<h3>Sfida <em>"{{cup.title}}"</em> <small class="season pull-right">{{cup.season}}</small></h3>
+  	<em>{{typeName}}</em>
+ 	
+ 	<h4>Giocatori</h4>
   	<em class="cupPlayersResume">
 	 	{{#each cup.players}}
 	  		<strong>{{username}}</strong>
@@ -17,7 +17,7 @@
 				<form>
 					<div class="row">
 						
-						<div class="row col-md-6">
+						<div class="row col-md-10">
 							<div class="col-xs-6">
 								<strong class="{{#if p1win}}winner{{/if}}">{{matchPlayers.p1.name}}</strong> 
 							</div>
@@ -33,17 +33,17 @@
 						{{#if toPlay}}
 							<div class="row col-md-10 inputWrap">
 								<div class="col-xs-6">
-									<input maxlength="1" type="number" value="{{matchPlayers.p1.score}}" placeholder="-" data-pid="{{matchPlayers.p1.id}}" name="p1Score" />
+									<input maxlength="1" type="number" class="form-control" value="{{matchPlayers.p1.score}}" placeholder="-" data-pid="{{matchPlayers.p1.id}}" name="p1Score" />
 								</div>		
 								<div class="col-xs-6">
-									<input maxlength="1" type="number" value="{{matchPlayers.p2.score}}"  placeholder="-" data-pid="{{matchPlayers.p2.id}}" name="p2Score" />
+									<input maxlength="1" type="number" class="form-control" value="{{matchPlayers.p2.score}}"  placeholder="-" data-pid="{{matchPlayers.p2.id}}" name="p2Score" />
 								</div>
 							</div>		
 							<div class="col-md-2">
 								<input type="submit" value="Conferma" class="btn btn-primary" style="width:100%;" />
 							</div>
 						{{else}}	
-							<div class="row col-md-6"> 
+							<div class="row col-md-10"> 
 								<span  class="col-xs-6" data-pid="{{matchPlayers.p1.id}}">{{matchPlayers.p1.score}}</span> 
 								<span  class="col-xs-6" data-pid="{{matchPlayers.p2.id}}">{{matchPlayers.p2.score}}</span>
 							</div>	
@@ -56,23 +56,25 @@
 		{{/each}}	
 	</ul>
 
-	<div id="tableCup">
-		<h4>Classifica</h4>
-		<table class="table table-striped">
-			<tbody>
-				<tr>
-					<th></th>
-					<th class="text-center">Vinte</th>
-					<th class="text-center">Set diff.</th>
-				</tr>
-				{{#each tableCup}}
+	{{#if showTable}}
+		<div id="tableCup">
+			<h4>Classifica</h4>
+			<table class="table table-striped">
+				<tbody>
 					<tr>
-						<th>{{this.username}}</th>
-						<td class="text-center">{{this.winning}}</td>
-						<td class="text-center">{{this.deltaMatch}}</td>
-					</tr>	
-				{{/each}}
-			</tbody>	
-		</table>
-	</div>	
+						<th></th>
+						<th class="text-center">Vinte</th>
+						<th class="text-center">Set diff.</th>
+					</tr>
+					{{#each tableCup}}
+						<tr>
+							<th>{{this.username}}</th>
+							<td class="text-center">{{this.winning}}</td>
+							<td class="text-center">{{this.deltaMatch}}</td>
+						</tr>	
+					{{/each}}
+				</tbody>	
+			</table>
+		</div>	
+	{{/if}}
 </template>

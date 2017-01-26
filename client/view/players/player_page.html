@@ -2,10 +2,10 @@
  
 
  <h3>{{> playerItem}}</h3>
-
- {{email}}
- {{this.profile.role}}
- {{this.profile.level}}
- {{this.profile.name}}
- {{this.profile.surname}}
+{{#if isCurrentUser}}
+ 	<p> Email : {{email}}</p>
+{{/if}}
+<p>Livello : {{level}}</p>
+ <p>Nome {{this.profile.name}}</p>
+ <p>Cognome {{this.profile.surname}}</p>
 </template>

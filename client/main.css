@@ -4,13 +4,14 @@
  .winner{color:#00a651;}
  .inputWrap{padding-bottom:1rem;}
  .inputWrap input{width:6rem;}
- .list-group{margin:0 -15px;}
+ .list-group{margin:0;}
  .table-striped{margin:1rem -8px 0 -8px;}
 .list-group-item:nth-child(odd){background:#EcEcEc;}
 .season{display:block; padding-top:1rem;}
+.played{opacity:.5;}
 h3, h4{color:#808080;}
 h4{margin-top:2rem;}
-.cupPlayersResume{display:block; border-bottom:solid .1rem #ececec; padding:1rem 0;}
+.cupPlayersResume{display:block; border-bottom:solid .1rem #ececec; padding:0 0 1rem 0;}
 .cupPlayersResume strong:after{content:', ';}
 .cupPlayersResume strong:last-child:after{content:'';}
 
@@ -18,6 +19,8 @@ h4{margin-top:2rem;}
 .notifications .dropdown-menu{top:auto;}
 
 .tab-pane{padding:2rem 0 0 0;}
+
+.list-group-item a{display:block;}
 /*
 .navbar-default{background:#00a651; color:#FFF;}
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{background:rgba(0,0,0,0.1); color:#FFF;}

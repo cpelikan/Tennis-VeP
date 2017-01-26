@@ -1,3 +1,4 @@
+
 Template.cupPage.helpers({
     username: function() {
         var p = Meteor.users.findOne({
@@ -6,6 +7,29 @@ Template.cupPage.helpers({
         return p.username;
     },
 
+    typeName : function(){
+        
+        function getTypeName(type){
+            var typeName = {
+                "1" : "Solo andata",
+                "2" : "Andata e ritorno",
+                "3" : "KnockOut",
+                "default" : "-------------"
+            };
+
+            return (typeName[type] || typeName['default']);
+        }     
+
+        var tN = getTypeName(this.cup.type);
+       
+        return tN;
+    },
+    showTable : function (){
+        if(this.cup.type == 3)
+            return false;
+        else
+            return true;
+    },
     matchPlayers: function() {
 
          var p1 = Meteor.users.findOne({
@@ -100,14 +124,14 @@ Template.cupPage.helpers({
         };
 
 
-        var tmpSort = table.sort(
+        /*var tmpSort = table.sort(
             function(a, b) {
                 return a.deltaMatch - b.deltaMatch
             });
 
-        var tmpOutput = tmpSort.reverse();
+        var tmpOutput = tmpSort.reverse();*/
 
-        var sort = tmpOutput.sort(
+        var sort = table.sort(
             function(a, b) {
                 return a.winning - b.winning
             });
@@ -117,13 +141,7 @@ Template.cupPage.helpers({
         Session.set(tableCupID, output);
 
 
-        if (this.cup.type != 3) {
-            $("#tableCup").show();
-            return output;
-        } else {
-
-            $("#tableCup").hide();
-        }
+         return output;
 
         //return Matches.find({winner : ''}).count();
     }
@@ -137,7 +155,6 @@ Template.cupPage.events({
 
         e.preventDefault();
 
-        
 
         var p1 = $(e.target).find('[name=p1Score]');
         var p2 = $(e.target).find('[name=p2Score]');
@@ -157,6 +174,7 @@ Template.cupPage.events({
             var typeCup = Session.get("typeCup_" + cupID);
 
             var matches = [];
+
             if (typeCup != 3) {
                 for (var x = 0; x < teams.length; x++) {
                     for (var y = x + 1; y < teams.length; y++) {
@@ -193,26 +211,37 @@ Template.cupPage.events({
 
 
         function setCupWinner(thisCup) {
+            var c = Cups.findOne(thisCup);
+            var areOnlyTwoPlayer = (c.players.length == 2);
 
-            var cupWinner = {
-                winner: Session.get("tableCup_" + thisCup)[0].id
-            };
+            var paramToUpdate;
+
+            if (areOnlyTwoPlayer) {
+                paramToUpdate = {
+                    done : true
+                };
+            }
+            else{
+                paramToUpdate = {
+                    winner: Session.get("tableCup_" + thisCup)[0].id,
+                    done : true
+                };
+            }
+
             var cupBonus = Cups.findOne(thisCup).bonus;
 
             Cups.update(thisCup, {
-                $set: cupWinner
+                $set: paramToUpdate
             }, function(error) {
                 if (error) {
-                    // display the error to the user
                     console.log(error.reason);
-                } else {
+                } else if (!areOnlyTwoPlayer) {
                     arg = {
-                        'winner': cupWinner.winner,
+                        'winner': paramToUpdate.winner,
                         'bonus': cupBonus,
                         'where': 'cupsWon',
                         'what': thisCup
                     };
-
 
                     updateRanking(arg);
                     console.log("done");
@@ -237,22 +266,19 @@ Template.cupPage.events({
 
         function cupWinnerStrategy(thisCup) {
             var c = Cups.findOne(thisCup);
-            var isSingleMatch = c.players.length == 2;
-            /*if (Session.get("tableCup_"+thisCup)[0].winning > Session.get("tableCup_"+thisCup)[1].winning ||
-                (
-                    Session.get("tableCup_"+thisCup)[0].winning === Session.get("tableCup_"+thisCup)[1].winning &&
-                    Session.get("tableCup_"+thisCup)[0].deltaMatch > Session.get("tableCup_"+thisCup)[1].deltaMatch
-                )) {*/
+            var areOnlyTwoPlayer = c.players.length == 2;
+            
             var leaders = checkWinner(thisCup);
 
             console.log(leaders);
             if (leaders.length == 1) {
+                
                 alert("Il vincitore è " + leaders[0].username + "!");
 
-                if (!isSingleMatch) {
-                    setCupWinner(thisCup);
-                }
+                setCupWinner(thisCup);
+              
             } else {
+                if(c.type!=3)
                 alert("Nessun vincitore, spareggio necessario");
                 //playOffBuilder(thisCup);
                 playOffBuilder(thisCup, leaders);
@@ -269,30 +295,37 @@ Template.cupPage.events({
 
             alert("USER TO UPDATE for " + where);
 
-            switch (where) {
 
-                case 'matchesWon':
+            function getWhere(where){
+                var push = {
+                   'matchesWon' : function(){
+                        return  {
+                            matchesWon: what
+                        };
 
-                    push = {
-                        matchesWon: what
-                    };
+                                               
+                    },
+                    'cupsWon' : function(){
+                       return {
+                            cupsWon: what
+                        };
 
-                    break;
+                    },
+                    'default' : function(){
+                       return {
+                            matchesWon: what
+                        };
 
-                case 'cupsWon':
+                    }
+                }
 
-                    push = {
-                        cupsWon: what
-                    };
-
-                    break;
-
-                default:
-                    push = {
-                        matchesWon: what
-                    };
+                return (push[where] || push['default'])();
 
             }
+
+            var push = getWhere(where);
+
+            console.log(push)
 
             var ranking = Rankingset.findOne({
                 playerUserId: user

@@ -1,10 +1,19 @@
 <template name="cupsList">
-  
-<h3>Tornei</h3>
-  
-  <ul class="list-group">
+<div class="row">  
+    <h3 class="col-md-8">Sfide</h3>
+    <div class="col-md-4 form-inline">
+      <div class="form-group">
+          <label class="form-label" for="listFilter">Filtra per</label>
+    		  <select class="form-control" id="listFilter">
+    		  		<option value="0">Mie</option>
+    		  		<option value="1">Tutte</option>
+    		  </select>
+  	</div>
+   </div> 	  
+ </div>  
+  <ul class="list-group cupsList">
     {{#each cups}}
-      <li class="list-group-item">{{> cupItem}}</li>
+      <li class="list-group-item {{#if this.done}}played{{/if}}">{{> cupItem}}</li>
     {{/each}}
   </ul>
 </template>

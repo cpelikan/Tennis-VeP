@@ -50,7 +50,7 @@ Accounts.onCreateUser(function(options, user) {
   user.profile.avatar         = "";
   user.profile.name           = "";
   user.profile.surname        = "";
-  user.profile.level          = "Beginner";
+  //user.profile.level          = "Beginner";
 
   initRank ({
     cupsWon : [],

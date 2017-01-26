@@ -21,5 +21,18 @@ Meteor.methods({
   }
 });
 
+/*Rankingset.after.update(function (userId, doc) {
+   
+    console.log(doc);
+   
+    var toUpdate = Meteor.users.findOne(doc.playerUserId);
+    
+    console.log(toUpdate._id);
+   
+    Meteor.user.update(toUpdate._id, { 
+        $set: { profile: "ciccionissimo" } 
+    });
+});*/
+
 
 
