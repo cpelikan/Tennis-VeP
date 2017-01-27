@@ -1,11 +1,59 @@
 <template name="playerPage">
  
-
+<form>
  <h3>{{> playerItem}}</h3>
+<div class="row">
+	 <div class="col-md-6"><p>Punti : {{points}}</p></div>
+	 <div class="col-md-6"><p>Livello : {{level}}</p></div>
+</div>
+<div class="row form-inline">
+
 {{#if isCurrentUser}}
- 	<p> Email : {{email}}</p>
+ 	 <div class="col-md-4 form-group">
+		<label class="form-label" >Email </label>
+	  	<span>{{email}}</span>
+	</div>
 {{/if}}
-<p>Livello : {{level}}</p>
- <p>Nome {{this.profile.name}}</p>
- <p>Cognome {{this.profile.surname}}</p>
+
+
+
+<div class="col-md-4 form-group">
+ <label class="form-label" >Nome </label>
+
+{{#if this.profile.name}}  
+	<span>{{this.profile.name}}</span>
+{{else}}
+	{{#if isCurrentUser}}
+		<input type="text" id="name" class="form-control" />	
+		{{else}} nd
+	{{/if}}	
+{{/if}}
+
+
+</div>
+
+<div class="col-md-4 form-group">
+	 <label class="form-label"> Cognome</label> 
+	  
+	{{#if this.profile.surname}}  
+		<span>{{this.profile.surname}}</span>
+	{{else}}
+		{{#if isCurrentUser}}
+			<input type="text" id="surname" class="form-control" />	
+			{{else}} nd
+		{{/if}}
+	{{/if}}
+	
+</div>
+</div>
+{{#if profileNotComplete}}	
+{{#if isCurrentUser}}	
+		<div class="row form-group">
+	        <div class="col-md-12 form">
+	            <input type="submit" value="Salva" class="btn btn-primary"/>
+	        </div>
+	    </div>
+   {{/if}}
+{{/if}}
+</form>
 </template>

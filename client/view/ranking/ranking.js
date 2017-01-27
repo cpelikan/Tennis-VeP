@@ -12,10 +12,11 @@ Template.stats.helpers({
             // GEnerale classifica var w = Matches.find({winner : pList[i]}).count();
           
           var p =  {
-              username   : Meteor.users.findOne({ _id: collect[i].playerUserId}).username,
-              matchesWon : collect[i].matchesWon.length,
-              cupsWon : collect[i].cupsWon.length,
-              points :  collect[i].points
+              username    :  Meteor.users.findOne({ _id: collect[i].playerUserId}).username,
+              matchesWon  :  collect[i].matchesWon.length,
+              cupsWon     :  collect[i].cupsWon.length,
+              points      :  collect[i].points,
+              userId      :  collect[i].playerUserId
             }
           
 

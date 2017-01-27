@@ -30,7 +30,7 @@
 */
 
 function initRank (ranking){
-console.log(0);
+
  Meteor.call('ranking', ranking, function(error, id) {
       if (error)
         return console.log(error.reason);

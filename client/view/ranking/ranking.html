@@ -26,7 +26,7 @@
 			{{#each rankinglist}}
 		    	<tr>
 			      <td>{{offset @index}}</td>
-			      <th scope="row">{{username}}</th>
+			      <th scope="row"><a href="{{pathFor route='playerPage' _id=this.userId}}">{{username}}</a></th>
 			      <td class="text-center">{{points}}</td>
 			      <td class="text-center">{{cupsWon}}</td>
 			      <td class="text-center">{{matchesWon}}</td>

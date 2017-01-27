@@ -343,7 +343,6 @@ Template.cupPage.events({
         }
 
 
-
         if (isValidResult) {
 
             if (confirm('Sei sicuro del risultato? Non potrai più modificarlo!')) {
