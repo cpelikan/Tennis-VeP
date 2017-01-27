@@ -1,26 +1,5 @@
 /*if (Cups.find().count() === 0) {
   Cups.insert({
-    title: 'Cup Winter',
-    season: 'Febbraio 2017',
-    players: [],
-    matches : []
-  });
-
-  Cups.insert({
-    title: 'Cup Spring',
-    season: 'Aprile 2017',
-    players: [],
-    matches : []
-  });
-
-  Cups.insert({
-    title: 'Cup Summer',
-    season: 'Luglio 2017',
-    players: [],
-    matches : []
-  });
-
-  Cups.insert({
     title: 'Cup Autunno',
     season: 'Settembre 2017',
     players: [],
@@ -31,7 +10,7 @@
 
 function initRank (ranking){
 
- Meteor.call('ranking', ranking, function(error, id) {
+    Meteor.call('ranking', ranking, function(error, id) {
       if (error)
         return console.log(error.reason);
 
@@ -50,6 +29,8 @@ Accounts.onCreateUser(function(options, user) {
   user.profile.avatar         = "";
   user.profile.name           = "";
   user.profile.surname        = "";
+  user.profile.claim          = "";
+  user.profile.phone          = "";
   //user.profile.level          = "Beginner";
 
   initRank ({
@@ -57,7 +38,7 @@ Accounts.onCreateUser(function(options, user) {
     matchesWon : [],
     playerUserId : user._id,
     points : 0
-  })
+  });
 
 
   return user;

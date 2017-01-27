@@ -1,59 +1,137 @@
 <template name="playerPage">
  
 <form>
- <h3>{{> playerItem}}</h3>
-<div class="row">
-	 <div class="col-md-6"><p>Punti : {{points}}</p></div>
-	 <div class="col-md-6"><p>Livello : {{level}}</p></div>
-</div>
-<div class="row form-inline">
+	<div class="row">
+		<div class="col-md-8">
+			<h3>{{> playerItem}}</h3>
 
-{{#if isCurrentUser}}
- 	 <div class="col-md-4 form-group">
-		<label class="form-label" >Email </label>
-	  	<span>{{email}}</span>
+			<p>{{this.profile.claim}}</p>
+		</div>
+
+		<div class="col-md-4">
+			<img src="{{avatar.link}}" alt="{{this.username}}" style="max-width:100%;" />
+		</div>
+
+	</div>	
+	<div class="row">
+		 <div class="col-md-6"><p>Punti : {{points}}</p></div>
+		 <div class="col-md-6"><p>Livello : {{level}}</p></div>
 	</div>
-{{/if}}
+	<div class="row form-inline">
 
-
-
-<div class="col-md-4 form-group">
- <label class="form-label" >Nome </label>
-
-{{#if this.profile.name}}  
-	<span>{{this.profile.name}}</span>
-{{else}}
 	{{#if isCurrentUser}}
-		<input type="text" id="name" class="form-control" />	
-		{{else}} nd
-	{{/if}}	
-{{/if}}
+	 	 <div class="col-md-4 form-group">
+			<label class="form-label" >Email </label>
+		  	<span>{{email}}</span>
+		</div>
+	{{/if}}
 
 
-</div>
+	<div class="col-md-4 form-group">
+	 <label class="form-label" >Nome </label>
 
-<div class="col-md-4 form-group">
-	 <label class="form-label"> Cognome</label> 
-	  
-	{{#if this.profile.surname}}  
-		<span>{{this.profile.surname}}</span>
+	{{#if this.profile.name}}  
+		<span>{{this.profile.name}}</span>
 	{{else}}
 		{{#if isCurrentUser}}
-			<input type="text" id="surname" class="form-control" />	
+			<input type="text" id="name" class="form-control" />	
 			{{else}} nd
-		{{/if}}
+		{{/if}}	
 	{{/if}}
-	
-</div>
-</div>
-{{#if profileNotComplete}}	
-{{#if isCurrentUser}}	
-		<div class="row form-group">
-	        <div class="col-md-12 form">
-	            <input type="submit" value="Salva" class="btn btn-primary"/>
-	        </div>
-	    </div>
-   {{/if}}
-{{/if}}
+
+
+	</div>
+
+	<div class="col-md-4 form-group">
+		 <label class="form-label">Cognome</label> 
+		  
+		{{#if this.profile.surname}}  
+			<span>{{this.profile.surname}}</span>
+		{{else}}
+			{{#if isCurrentUser}}
+				<input type="text" id="surname" class="form-control" />	
+				{{else}} nd
+			{{/if}}
+		{{/if}}
+		
+	</div>
+
+
+	<div class="col-md-4 form-group">
+		 <label class="form-label">Telefono</label> 
+		  
+		{{#if this.profile.phone}}  
+			<span>{{this.profile.phone}}</span>
+		{{else}}
+			{{#if isCurrentUser}}
+				<input type="text" id="phone" class="form-control" />	
+				{{else}} nd
+			{{/if}}
+		{{/if}}
+		
+	</div>
+
+	<div class="col-md-4 form-group">
+	 <label class="form-label" >Motto </label>
+
+		{{#if this.profile.claim}}  
+			<span>{{this.profile.claim}}</span>
+		{{else}}
+			{{#if isCurrentUser}}
+				<textarea id="claim" class="form-control"></textarea>	
+				{{else}} nd
+			{{/if}}	
+		{{/if}}
+	</div>
+
+
+	</div>
+	{{#if profileNotComplete}}	
+	{{#if isCurrentUser}}	
+			<div class="row form-group">
+		        <div class="col-md-12 form">
+		            <input type="submit" value="Salva" class="btn btn-primary"/>
+		        </div>
+		    </div>
+	   {{/if}}
+	{{/if}}
 </form>
+
+
+{{#if this.profile.avatar}}
+	<!--
+	{{> uploadedFiles}}
+	-->
+	{{else}}
+	{{> uploadForm}}
+{{/if}}
+</template>
+
+
+
+<template name="uploadForm">
+  {{#with currentUpload}}
+    Uploading <b>{{file.name}}</b>: 
+    <span id="progress">{{progress.get}}%</span>
+  {{else}}
+    <input id="fileInput" type="file" />
+    <p><small>Upload file in <code>jpeg</code> or <code>png</code> format, with size less or equal to 10MB</small></p>
+  {{/with}}
+</template>
+
+
+<template name="uploadedFiles">
+  {{#if uploadedFiles.count}}
+    <ul>
+      {{#each file in uploadedFiles.each}}
+        <li>
+          <a href="{{file.link}}?download=true" download="{{file.name}}">
+          	<img src="{{file.link}}" alt="{{file.name}}" style="max-width:75%;" />
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <div>No files uploaded, yet</div>
+  {{/if}}
 </template>

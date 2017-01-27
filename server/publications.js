@@ -13,10 +13,3 @@ Meteor.publish('rankingset', function() {
 Meteor.publish('notifications', function() {
   return Notifications.find();
 });
-
-/*
-Meteor.publish('allPlayers',function(){
-  // you should restrict this publication to only be available to admin users
-  //return Meteor.users.find({},{fields: { emails: 1 }});
-  return Meteor.users.find();
-});*/
