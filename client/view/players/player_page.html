@@ -2,120 +2,193 @@
  
 <form>
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-xs-8">
 			<h3>{{> playerItem}}</h3>
 
-			<p>{{this.profile.claim}}</p>
+			{{#if isCurrentUser}}
+				{{else}}
+				<p>{{this.profile.claim}}</p>
+			{{/if}}
+
+
+
+			<div class="row">
+
+
+				<div class="col-md-4 form-group">
+					 <label class="form-label" >Nome </label>
+					 {{#if isCurrentUser}}
+						<input type="text" id="name" value="{{this.profile.name}}" class="form-control" />	
+						{{else}}
+						{{#if this.profile.name}}  
+							<span>{{this.profile.name}}</span>
+						{{else}}
+							nd	
+						{{/if}}	
+					{{/if}}
+				</div>
+
+				<div class="col-md-4 form-group">
+					 <label class="form-label">Cognome</label> 
+					 {{#if isCurrentUser}}
+						<input type="text" id="surname" value="{{this.profile.surname}}" class="form-control" />	
+						{{else}}
+						{{#if this.profile.surname}}  
+							<span>{{this.profile.surname}}</span>
+						{{else}}
+							nd	
+						{{/if}}
+					{{/if}}
+				</div>
+
+
+				<div class="col-md-4 form-group">
+					 <label class="form-label">Telefono</label> 
+					 {{#if isCurrentUser}}
+						<input type="text" id="phone" value ="{{this.profile.phone}}" class="form-control" />	
+						{{else}}
+						{{#if this.profile.phone}}  
+							<span>{{this.profile.phone}}</span>
+						{{else}}
+							nd
+						{{/if}}
+					{{/if}} 
+				</div>
+
+
+				{{#if isCurrentUser}}
+				 	<div class="col-md-4 form-group">
+						<label class="form-label" >Email </label>
+					  	<span>{{email}}</span>
+					</div>
+				{{/if}}
+
+
+			</div>
+
+
+
 		</div>
 
-		<div class="col-md-4">
-			<img src="{{avatar.link}}" alt="{{this.username}}" style="max-width:100%;" />
+		<div class="col-xs-4">
+			<div class="avatarWrap">
+				{{#if this.profile.avatar}}
+					<img src="{{avatar.link}}" alt="{{this.username}}" class="avatar" />
+					{{else}}
+						{{> uploadAvatar}}
+				{{/if}}
+			</div>	
+
+			<div class="row">
+				 <div class="col-md-6"><p>Punti : {{points}}</p></div>
+				 <div class="col-md-6"><p>Livello : {{level}}</p></div>
+			</div>
+
 		</div>
 
 	</div>	
-	<div class="row">
-		 <div class="col-md-6"><p>Punti : {{points}}</p></div>
-		 <div class="col-md-6"><p>Livello : {{level}}</p></div>
-	</div>
-	<div class="row form-inline">
+	
+	
 
-	{{#if isCurrentUser}}
-	 	 <div class="col-md-4 form-group">
-			<label class="form-label" >Email </label>
-		  	<span>{{email}}</span>
-		</div>
-	{{/if}}
+<div class="row">	
+
 
 
 	<div class="col-md-4 form-group">
-	 <label class="form-label" >Nome </label>
-
-	{{#if this.profile.name}}  
-		<span>{{this.profile.name}}</span>
-	{{else}}
-		{{#if isCurrentUser}}
-			<input type="text" id="name" class="form-control" />	
-			{{else}} nd
-		{{/if}}	
-	{{/if}}
-
-
-	</div>
-
-	<div class="col-md-4 form-group">
-		 <label class="form-label">Cognome</label> 
-		  
-		{{#if this.profile.surname}}  
-			<span>{{this.profile.surname}}</span>
-		{{else}}
-			{{#if isCurrentUser}}
-				<input type="text" id="surname" class="form-control" />	
-				{{else}} nd
-			{{/if}}
-		{{/if}}
+		<label class="form-label">Indirizzo</label> 
+		 
 		
-	</div>
+		<div class="row">
+			<div class="col-xs-4">
+				Palazzina 
+				{{#if isCurrentUser}}
+					<select class="form-control" id="building">
+						{{#each b in address.buildings}}
+							<option value="{{b}}" selected="{{#if selectedAddress 'building' b }} true {{/if}}">{{b}}</option>
+						{{/each}}
+					</select>	
+					{{else}}
+					{{#if this.profile.address.building}}  
+						<span>{{this.profile.address.building}}</span>
+					{{else}}
+						nd
+					{{/if}}
+				{{/if}}
+
+			</div>
+			
+			<div class="col-xs-4">
+				Piano 
+				{{#if isCurrentUser}}
+					<select class="form-control" id="floor">
+						{{#each f in address.floor}}
+							<option value="{{f}}" selected="{{#if selectedAddress 'floor' f }} true {{/if}}">{{f}}</option>
+						{{/each}}
+					</select>	
+					{{else}} 
+					{{#if this.profile.address.floor}}  
+					<span>{{this.profile.address.floor}}</span>
+					{{else}}
+						nd
+					{{/if}}
+				{{/if}}
+			</div>
+
+			<div class="col-xs-4">
+				Interno 
+				{{#if isCurrentUser}}
+					<select class="form-control" id="int">
+						{{#each i in address.int}}
+							<option value="{{i}}"  selected="{{#if selectedAddress 'int' i }} true {{/if}}"> {{i}}</option>
+						{{/each}}
+					</select>	
+					{{else}} 
+						{{#if this.profile.address.int}}  
+						<span>{{this.profile.address.int}}</span>
+					{{else}}
+						nd
+					{{/if}}
+				{{/if}}
+			</div>	
 
 
-	<div class="col-md-4 form-group">
-		 <label class="form-label">Telefono</label> 
-		  
-		{{#if this.profile.phone}}  
-			<span>{{this.profile.phone}}</span>
-		{{else}}
-			{{#if isCurrentUser}}
-				<input type="text" id="phone" class="form-control" />	
-				{{else}} nd
-			{{/if}}
-		{{/if}}
+		</div>	
 		
 	</div>
 
 	<div class="col-md-4 form-group">
 	 <label class="form-label" >Motto </label>
-
-		{{#if this.profile.claim}}  
-			<span>{{this.profile.claim}}</span>
-		{{else}}
-			{{#if isCurrentUser}}
-				<textarea id="claim" class="form-control"></textarea>	
-				{{else}} nd
-			{{/if}}	
-		{{/if}}
+	 	{{#if isCurrentUser}}
+				<textarea id="claim" class="form-control">{{this.profile.claim}}</textarea>	
+			{{/if}}
+		
 	</div>
 
 
 	</div>
-	{{#if profileNotComplete}}	
+	
 	{{#if isCurrentUser}}	
-			<div class="row form-group">
-		        <div class="col-md-12 form">
-		            <input type="submit" value="Salva" class="btn btn-primary"/>
-		        </div>
-		    </div>
-	   {{/if}}
+		<div class="row form-group">
+	        <div class="col-md-12 form">
+	            <input type="submit" value="Salva" class="btn btn-primary"/>
+	        </div>
+	    </div>
 	{{/if}}
 </form>
 
 
-{{#if this.profile.avatar}}
-	<!--
-	{{> uploadedFiles}}
-	-->
-	{{else}}
-	{{> uploadForm}}
-{{/if}}
+
 </template>
 
 
 
-<template name="uploadForm">
+<template name="uploadAvatar">
   {{#with currentUpload}}
     Uploading <b>{{file.name}}</b>: 
     <span id="progress">{{progress.get}}%</span>
   {{else}}
-    <input id="fileInput" type="file" />
-    <p><small>Upload file in <code>jpeg</code> or <code>png</code> format, with size less or equal to 10MB</small></p>
+    <input id="fileInput" class="fileInput" type="file" />
+    <p class="istruction"><small>Carica file in <code>jpeg</code> o <code>png</code>, con dimensione massima di 10MB</small></p>
   {{/with}}
 </template>
 
@@ -126,7 +199,7 @@
       {{#each file in uploadedFiles.each}}
         <li>
           <a href="{{file.link}}?download=true" download="{{file.name}}">
-          	<img src="{{file.link}}" alt="{{file.name}}" style="max-width:75%;" />
+          	<img src="{{file.link}}" alt="{{file.name}}" class="avatar" />
           </a>
         </li>
       {{/each}}

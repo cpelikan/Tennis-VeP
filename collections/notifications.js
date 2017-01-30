@@ -5,7 +5,7 @@ Notifications.allow({
   update: ownsDocument
 });*/
 
-createCupNotification = function(cup) {
+createCupNotification = function(cup, type) {
   var notification = Notifications.findOne(cup.Id);
   //if (cup.userId !== Meteor.user()._id) {
     var recipients = [];
@@ -23,7 +23,8 @@ createCupNotification = function(cup) {
       cupId: cup.id,
       cupTitle : cup.title,
       cupPlayers : cup.players,
-      recipients : recipients
+      recipients : recipients,
+      type : type
     });
   //}
 };

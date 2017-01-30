@@ -213,7 +213,7 @@ Template.cupPage.events({
         function setCupWinner(thisCup) {
             var c = Cups.findOne(thisCup);
             var areOnlyTwoPlayer = (c.players.length == 2);
-
+            var cupBonus = c.bonus;
             var paramToUpdate;
 
             if (areOnlyTwoPlayer) {
@@ -228,7 +228,7 @@ Template.cupPage.events({
                 };
             }
 
-            var cupBonus = Cups.findOne(thisCup).bonus;
+           
 
             Cups.update(thisCup, {
                 $set: paramToUpdate
@@ -244,6 +244,7 @@ Template.cupPage.events({
                     };
 
                     updateRanking(arg);
+                    createCupNotification(c, "cup_closed");
                     console.log("done");
                 }
             });
@@ -379,7 +380,8 @@ Template.cupPage.events({
                     //$set: players
                     $set: {
                         "players": players,
-                        "winner": winner
+                        "winner": winner,
+                        "done"  : true
                     }
                 }, function(error) {
                     if (error) {

@@ -48,7 +48,7 @@ Meteor.methods({
     var cupId = Cups.insert(cup);
     cup.id = cupId;
    
-    createCupNotification(cup);
+    createCupNotification(cup, "cup_created");
     return cupId;
   }
 });

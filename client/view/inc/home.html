@@ -1,9 +1,36 @@
 <template name="home">
 	 {{#if currentUser}}
-       
-	 HOME
+     <div class="home">  
+	 	
+	 	<div class="row">
+      
+      <div class="col-md-5 boxHP">
+        <h4>Ciao {{currentUser.username}}</h4>
+        {{> welcome}}
+      </div>
+      <div class="col-md-5 boxHP">
+        <h4>Ultime sfide create</h4>
+        {{> lastCups}}
+      </div>
+      <div class="col-md-2">&nbsp;</div>
+     
+
+    </div>
+      
+	 </div>
 
     {{else}}
         {{> auth}}
     {{/if}}
+</template>
+
+
+<template name="lastCups">
+   {{> cupsListOnly cups=cups}}  
+</template>
+
+<template name="welcome">
+   Hai {{tot}} punti.
+   La tua percentuale di vittorie è del
+   {{winnerRatio}}
 </template>

@@ -19,19 +19,18 @@ function initRank (ranking){
 
 Accounts.onCreateUser(function(options, user) {
   //user._id = Meteor.users._makeNewID();
-  user.profile                = {};
-  user.profile.role           = "Player";
-  /*user.profile.ranking        = "0";
-  user.profile.cupsWon        = "0";
-  user.profile.totalMatches   = "0";
-  user.profile.matchesWon     = "0";
-  */
-  user.profile.avatar         = "";
-  user.profile.name           = "";
-  user.profile.surname        = "";
-  user.profile.claim          = "";
-  user.profile.phone          = "";
-  //user.profile.level          = "Beginner";
+  user.profile                  = {};
+  user.profile.role             = "Player";
+  user.profile.avatar           = "";
+  user.profile.name             = "";
+  user.profile.surname          = "";
+  user.profile.claim            = "";
+  user.profile.phone            = "";
+  user.profile.address          = {};
+  user.profile.address.building  = "";
+  user.profile.address.floor    = "";
+  user.profile.address.int      = "";
+  user.profile.favoriteEmail    = user.emails[0].address;
 
   initRank ({
     cupsWon : [],

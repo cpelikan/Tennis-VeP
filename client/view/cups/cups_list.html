@@ -10,10 +10,17 @@
     		  </select>
   	</div>
    </div> 	  
- </div>  
-  <ul class="list-group cupsList">
+ </div>
+
+ {{> cupsListOnly cups=cups}}  
+</template>
+
+<template name="cupsListOnly">
+    <ul class="list-group cupsList">
     {{#each cups}}
-      <li class="list-group-item {{#if this.done}}played{{/if}}">{{> cupItem}}</li>
+      <li class="list-group-item {{#if this.done}}played{{/if}}">
+        <a href="{{pathFor 'cupPage'}}"><span>{{title}}</span> <small class="pull-right">{{season}}</small></a>      
+      </li>
     {{/each}}
   </ul>
 </template>

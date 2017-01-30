@@ -42,6 +42,14 @@ Template.notification.helpers({
   },
   notificationAuthor: function() {
     return Meteor.users.findOne(this.userId).username;
+  },
+  actionToNotify : function(){
+    var dictionary = {
+      "cup_created" : "ha creato",
+      "cup_closed" : "ha terminato"
+      }
+     
+     return dictionary[this.type];
   }
 });
 

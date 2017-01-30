@@ -1,10 +1,8 @@
 Template.playerPage.helpers({
  	email : function(){
- 	
+ 
 		var e = this.emails[0].address;
-		console.log(this.emails)
 		return e;
- 		
  		
  	},
 
@@ -61,13 +59,19 @@ Template.playerPage.helpers({
  	points : function(){
  		return Rankingset.findOne({"playerUserId" : this._id}).points;
  	},
- 	profileNotComplete : function(){
- 		if(!this.profile.name || !this.profile.surname)
- 			return true;
- 		return false;
- 	},
   avatar : function(){
     return Images.findOne({"_id" : this.profile.avatar});
+  },
+  address : function(){
+    var a = {
+      buildings : ["", "A","B","C","D","E","F","G","H","I","L"],
+      floor     : ["", "0", "1","2","3","4", "5"],
+      int       : ["", "1" ,"2", "3", "4"]
+    };
+    return a; 
+  },
+  selectedAddress : function(what, current){
+    return this.profile.address[what] == current;  
   }
 });
 
@@ -77,12 +81,23 @@ Template.playerPage.events({
 		e.preventDefault();
 		var name = $('#name').val();
 		var surname = $('#surname').val();
-		console.log(name + '' + surname);
+		var claim = $('#claim').val();
+    var building = $('#building').val();
+    var floor = $('#floor').val();
+    var int = $('#int').val();
+    var phone = $('#phone').val();
+
 
 		Meteor.users.update(Meteor.userId(), {
                 $set: {
                 	"profile.name" : name,
-                	"profile.surname" : surname
+                	"profile.surname" : surname,
+                  "profile.claim" : claim,
+                  "profile.phone" : phone,
+                  "profile.address.building" : building,
+                  "profile.address.floor" : floor,
+                  "profile.address.int" : int
+
                 }
             }, function(error) {
                 if (error) {
@@ -103,17 +118,17 @@ Template.uploadedFiles.helpers({
   }
 });
 
-Template.uploadForm.onCreated(function () {
+Template.uploadAvatar.onCreated(function () {
   this.currentUpload = new ReactiveVar(false);
 });
 
-Template.uploadForm.helpers({
+Template.uploadAvatar.helpers({
   currentUpload: function () {
     return Template.instance().currentUpload.get();
   }
 });
 
-Template.uploadForm.events({
+Template.uploadAvatar.events({
   'change #fileInput': function (e, template) {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
       // We upload only one file, in case 

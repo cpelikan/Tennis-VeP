@@ -1,6 +1,7 @@
 /* CSS declarations go here */
 #main{padding:0 15px;}
-
+.home{background:  url('images/Tennis-Ball-PNG-Image.png') 0 0 no-repeat; background-size: cover; min-height:35rem;}
+.boxHP{background:rgba(255,255,255, .75); padding:1rem;}
  .winner{color:#00a651;}
  .inputWrap{padding-bottom:1rem;}
  .inputWrap input{width:6rem;}
@@ -21,6 +22,18 @@ h4{margin-top:2rem;}
 .tab-pane{padding:2rem 0 0 0;}
 
 .list-group-item a{display:block;}
+
+.avatarWrap, .avatarWrap *{-moz-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in;transition: all 0.2s ease-in;}
+.avatarWrap{background:#ECECEC url('/.....images/silhouette.png') 0 0 no-repeat; background-size: cover; 
+position:relative; padding:1rem; overflow:hidden; min-height:20rem;}
+.avatarWrap:hover{background-position:0 0;}
+.avatarWrap img{width:100%; max-width:20rem; min-width:10rem; }
+.istruction{background: rgba(255,255,255,0.9);opacity:0; position:absolute; bottom:1rem; left:1rem; right:1rem;z-index:1;}
+
+.avatarWrap:hover .istruction{opacity:1;}
+.fileInput{filter: alpha(opacity=0);opacity: 0; position:absolute; top:0; bottom:0; right:0; left:0; z-index:2;}
+.avatar{}
+.fakeAvatar{}
 /*
 .navbar-default{background:#00a651; color:#FFF;}
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{background:rgba(0,0,0,0.1); color:#FFF;}
