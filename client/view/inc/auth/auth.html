@@ -2,17 +2,17 @@
     <form>
         <div class="form-group">
             <label for="registerUsername">Username:</label>
-            <input type="text" name="registerUsername" class="form-control" />
+            <input type="text" name="registerUsername" class="form-control" required="required" />
         </div>
         
         <div class="form-group">    
             <label for="registerEmail">Email:</label>
-            <input type="email" name="registerEmail" class="form-control" />
+            <input type="email" name="registerEmail" class="form-control" required="required" />
         </div>
             
         <div class="form-group">
             <label for="registerPassword">Password:</label>
-            <input type="password" name="registerPassword" class="form-control" />
+            <input type="password" name="registerPassword" class="form-control" required="required" />
         </div>
         
         <input type="submit" value="Registrati" class="btn btn-primary" />
@@ -51,7 +51,7 @@
             <li class="active"><a data-toggle="tab" href="#login">Accedi</a></li>
             <li><a data-toggle="tab" href="#register">Registrati</a></li>
        </ul>
-       <div class="tab-content">
+       <div class="tab-content boxHP">
             <div id="login" class="tab-pane fade in active">
                 {{> login}}
             </div>

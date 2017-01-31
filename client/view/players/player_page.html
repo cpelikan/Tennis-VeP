@@ -1,7 +1,22 @@
 <template name="playerPage">
  
-<form>
+<form class="playerPage">
 	<div class="row">
+		<div class="col-xs-4 pull-right">
+			<div class="picZone">
+				<div class="points">{{points}}</div>	
+				<div class="level">{{level}}</div>
+				<div class="{{#if this.profile.avatar }} avatarWrap avatarDone{{else}} avatarWrap {{/if}}">
+
+					{{#if this.profile.avatar}}
+						<img src="{{avatar.link}}" alt="{{this.username}}" class="avatar" />
+					{{/if}}	
+					{{> uploadAvatar}}
+					
+				</div>	
+			</div>	
+
+		</div>
 		<div class="col-xs-8">
 			<h3>{{> playerItem}}</h3>
 
@@ -21,9 +36,9 @@
 						<input type="text" id="name" value="{{this.profile.name}}" class="form-control" />	
 						{{else}}
 						{{#if this.profile.name}}  
-							<span>{{this.profile.name}}</span>
+							<h4>{{this.profile.name}}</h4>
 						{{else}}
-							nd	
+							<h4>nd</h4>
 						{{/if}}	
 					{{/if}}
 				</div>
@@ -34,9 +49,9 @@
 						<input type="text" id="surname" value="{{this.profile.surname}}" class="form-control" />	
 						{{else}}
 						{{#if this.profile.surname}}  
-							<span>{{this.profile.surname}}</span>
+							<h4>{{this.profile.surname}}</h4>
 						{{else}}
-							nd	
+							<h4>nd</h4>	
 						{{/if}}
 					{{/if}}
 				</div>
@@ -48,9 +63,9 @@
 						<input type="text" id="phone" value ="{{this.profile.phone}}" class="form-control" />	
 						{{else}}
 						{{#if this.profile.phone}}  
-							<span>{{this.profile.phone}}</span>
+							<h4>{{this.profile.phone}}</h4>
 						{{else}}
-							nd
+							<h4>nd</h4>
 						{{/if}}
 					{{/if}} 
 				</div>
@@ -59,7 +74,7 @@
 				{{#if isCurrentUser}}
 				 	<div class="col-md-4 form-group">
 						<label class="form-label" >Email </label>
-					  	<span>{{email}}</span>
+					  	<h4>{{email}}</h4>
 					</div>
 				{{/if}}
 
@@ -70,21 +85,7 @@
 
 		</div>
 
-		<div class="col-xs-4">
-			<div class="avatarWrap">
-				{{#if this.profile.avatar}}
-					<img src="{{avatar.link}}" alt="{{this.username}}" class="avatar" />
-					{{else}}
-						{{> uploadAvatar}}
-				{{/if}}
-			</div>	
-
-			<div class="row">
-				 <div class="col-md-6"><p>Punti : {{points}}</p></div>
-				 <div class="col-md-6"><p>Livello : {{level}}</p></div>
-			</div>
-
-		</div>
+		
 
 	</div>	
 	
@@ -109,9 +110,9 @@
 					</select>	
 					{{else}}
 					{{#if this.profile.address.building}}  
-						<span>{{this.profile.address.building}}</span>
+						<h4>{{this.profile.address.building}}</h4>
 					{{else}}
-						nd
+						<h4>nd</h4>
 					{{/if}}
 				{{/if}}
 
@@ -127,9 +128,9 @@
 					</select>	
 					{{else}} 
 					{{#if this.profile.address.floor}}  
-					<span>{{this.profile.address.floor}}</span>
+					<h4>{{this.profile.address.floor}}</h4>
 					{{else}}
-						nd
+						<h4>nd</h4>
 					{{/if}}
 				{{/if}}
 			</div>
@@ -144,9 +145,9 @@
 					</select>	
 					{{else}} 
 						{{#if this.profile.address.int}}  
-						<span>{{this.profile.address.int}}</span>
+						<h4>{{this.profile.address.int}}</h4>
 					{{else}}
-						nd
+						<h4>nd</h4>
 					{{/if}}
 				{{/if}}
 			</div>	
@@ -156,14 +157,13 @@
 		
 	</div>
 
-	<div class="col-md-4 form-group">
-	 <label class="form-label" >Motto </label>
-	 	{{#if isCurrentUser}}
-				<textarea id="claim" class="form-control">{{this.profile.claim}}</textarea>	
-			{{/if}}
-		
-	</div>
-
+	{{#if isCurrentUser}}
+		<div class="col-md-4 form-group">
+		 	<label class="form-label" >Motto </label>
+		 	
+			<textarea id="claim" class="form-control">{{this.profile.claim}}</textarea>	
+		</div>
+	{{/if}}
 
 	</div>
 	

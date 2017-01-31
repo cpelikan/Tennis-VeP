@@ -1,3 +1,4 @@
+
 Template.lastCups.helpers({
 
 	cups : function(){ 
@@ -10,13 +11,23 @@ Template.lastCups.helpers({
 Template.welcome.helpers({
 
 	winnerRatio : function(){ 
-		console.log(Meteor.userId())
-		var allMatches = Matches.find(
-			{ 
-	    		players: { $in: [ {id : Meteor.userId()} ] } 
-	    	}).fetch();
+				
+	    var allMatches = Matches.find({'players.id': Meteor.userId(), done : true}).count();
 
-		console.log(allMatches)	
+		var matchWins = Matches.find({'winner': Meteor.userId()}).count();
+
+		var ratio = (matchWins/allMatches)*100+"%";
+
+		if (matchWins)
+		return ratio;
+
+		return false	
+	},
+
+	points : function(){
+		var points = Rankingset.findOne({'playerUserId' : Meteor.userId()}).points;
+		console.log(points);
+		return points;
 	}
 
 });
