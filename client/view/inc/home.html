@@ -7,7 +7,7 @@
   	 	<div class="row">
         
         <div class="col-md-5 boxHP">
-          <h4>Ciao {{currentUser.username}}</h4>
+          <h4>Ciao <a href="{{pathFor route='playerPage' _id=currentUser._id}}">{{currentUser.username}}</a></h4>
           {{> welcome}}
         </div>
         
@@ -35,7 +35,7 @@
 </template>
 
 <template name="welcome">
-   <p>Hai <strong>{{points}}</strong> punti.</p>
+   {{#if points}}<p>Hai <strong>{{points}}</strong> punti.</p>{{/if}}
    {{#if winnerRatio}}
    <p>
      La tua percentuale di vittorie è del

@@ -10,16 +10,6 @@ Template.notifications.helpers({
                     }
                 }
             });
-            /*var uID =  Meteor.userId();
-
-            return  Notifications.find({
-                userId : {$ne: Meteor.userId()},
-                recipients: {
-                    $elemMatch: {
-                        uID:  false
-                    }
-                }
-            });*/
 
   },
   notificationCount: function(){
@@ -60,6 +50,7 @@ Template.notification.events({
     var tmpRecip = this.recipients;
     var recipients = []; 
     
+
     for (r in tmpRecip ){
       var i = {};
       i.player = tmpRecip[r].player; 
@@ -73,7 +64,7 @@ Template.notification.events({
     }
 
     Notifications.update(this._id, {
-         recipients
+         $set : {recipients : recipients}
     });
   }
 });

@@ -16,18 +16,24 @@ Template.welcome.helpers({
 
 		var matchWins = Matches.find({'winner': Meteor.userId()}).count();
 
-		var ratio = (matchWins/allMatches)*100+"%";
+		var ratio = (matchWins/allMatches)*100;
 
+		var roundedRatio = Math.round(ratio)+"%";
+		
 		if (matchWins)
-		return ratio;
+		return roundedRatio;
 
-		return false	
+		return false;	
 	},
 
 	points : function(){
 		var points = Rankingset.findOne({'playerUserId' : Meteor.userId()}).points;
-		console.log(points);
+		
+		
+		if (points)
 		return points;
+
+		return false;
 	}
 
 });

@@ -11,18 +11,20 @@ createCupNotification = function(cup, type) {
     var recipients = [];
     
     for (p in cup.players){
-      var r = {};
-      r.player = cup.players[p];
-      r.read = false;
-      //r[cup.players[p]] = false;
-      recipients.push(r);
+      if(cup.players[p] != cup.userId){
+        var r = {};
+        r.player = cup.players[p];
+        r.read = false;
+        //r[cup.players[p]] = false;
+        recipients.push(r);
+       } 
     }
     console.log(recipients);
     Notifications.insert({
       userId: cup.userId,
       cupId: cup.id,
       cupTitle : cup.title,
-      cupPlayers : cup.players,
+      //cupPlayers : cup.players,
       recipients : recipients,
       type : type
     });

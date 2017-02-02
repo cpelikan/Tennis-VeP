@@ -2,27 +2,30 @@
  
 <form class="playerPage">
 	<div class="row">
-		<div class="col-xs-4 pull-right">
-			<div class="picZone">
-				<div class="points">{{points}}</div>	
-				<div class="level">{{level}}</div>
+		<div class="col-xs-5 pull-right">
+			
 				<div class="{{#if this.profile.avatar }} avatarWrap avatarDone{{else}} avatarWrap {{/if}}">
+					<div class="picZone">
+					<div class="points">#{{positioning}}</div>	
+					<div class="level">{{level}}</div>
 
 					{{#if this.profile.avatar}}
 						<img src="{{avatar.link}}" alt="{{this.username}}" class="avatar" />
 					{{/if}}	
-					{{> uploadAvatar}}
 					
 				</div>	
+				{{#if isCurrentUser}}
+				{{> uploadAvatar}}
+				{{/if}}
 			</div>	
 
 		</div>
-		<div class="col-xs-8">
+		<div class="col-xs-7">
 			<h3>{{> playerItem}}</h3>
 
 			{{#if isCurrentUser}}
 				{{else}}
-				<p>{{this.profile.claim}}</p>
+				<p><em>{{this.profile.claim}}</em></p>
 			{{/if}}
 
 
@@ -33,7 +36,7 @@
 				<div class="col-md-4 form-group">
 					 <label class="form-label" >Nome </label>
 					 {{#if isCurrentUser}}
-						<input type="text" id="name" value="{{this.profile.name}}" class="form-control" />	
+						<input type="text" id="name" value="{{this.profile.name}}" class="form-control {{#if this.profile.name}}full{{/if}}" />	
 						{{else}}
 						{{#if this.profile.name}}  
 							<h4>{{this.profile.name}}</h4>
@@ -46,7 +49,7 @@
 				<div class="col-md-4 form-group">
 					 <label class="form-label">Cognome</label> 
 					 {{#if isCurrentUser}}
-						<input type="text" id="surname" value="{{this.profile.surname}}" class="form-control" />	
+						<input type="text" id="surname" value="{{this.profile.surname}}" class="form-control {{#if this.profile.surname}}full{{/if}}" />	
 						{{else}}
 						{{#if this.profile.surname}}  
 							<h4>{{this.profile.surname}}</h4>
@@ -60,7 +63,7 @@
 				<div class="col-md-4 form-group">
 					 <label class="form-label">Telefono</label> 
 					 {{#if isCurrentUser}}
-						<input type="text" id="phone" value ="{{this.profile.phone}}" class="form-control" />	
+						<input type="text" id="phone" value ="{{this.profile.phone}}" class="form-control {{#if this.profile.phone}}full{{/if}}" />	
 						{{else}}
 						{{#if this.profile.phone}}  
 							<h4>{{this.profile.phone}}</h4>
@@ -83,15 +86,10 @@
 
 
 
-		</div>
 
-		
 
-	</div>	
-	
-	
 
-<div class="row">	
+			<div class="row">	
 
 
 
@@ -100,7 +98,7 @@
 		 
 		
 		<div class="row">
-			<div class="col-xs-4">
+			<div class="col-xs-5">
 				Palazzina 
 				{{#if isCurrentUser}}
 					<select class="form-control" id="building">
@@ -118,7 +116,7 @@
 
 			</div>
 			
-			<div class="col-xs-4">
+			<div class="col-xs-3">
 				Piano 
 				{{#if isCurrentUser}}
 					<select class="form-control" id="floor">
@@ -158,14 +156,33 @@
 	</div>
 
 	{{#if isCurrentUser}}
-		<div class="col-md-4 form-group">
+		<div class="col-md-8 form-group">
 		 	<label class="form-label" >Motto </label>
 		 	
 			<textarea id="claim" class="form-control">{{this.profile.claim}}</textarea>	
 		</div>
 	{{/if}}
 
-	</div>
+	</div>	
+
+
+
+
+
+
+
+
+
+
+		</div>
+
+		
+
+	</div>	
+	
+	
+
+
 	
 	{{#if isCurrentUser}}	
 		<div class="row form-group">

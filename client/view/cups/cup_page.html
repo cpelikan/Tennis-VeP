@@ -1,6 +1,6 @@
 <template name="cupPage">
  
-  	<h3>Sfida <em>"{{cup.title}}"</em> <small class="season pull-right">{{cup.season}}</small></h3>
+  	<h3>Sfida <strong>{{cup.title}}</strong> <small class="season pull-right">{{cup.season}}</small></h3>
   	<em>{{typeName}}</em>
  	
  	<h4>Giocatori</h4>
@@ -76,5 +76,8 @@
 				</tbody>	
 			</table>
 		</div>	
+	{{else}}
+	<input type="hidden" value="{{tableCup}}" />
 	{{/if}}
+
 </template>

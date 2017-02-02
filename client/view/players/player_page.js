@@ -56,9 +56,17 @@ Template.playerPage.helpers({
 
  		
  	},
- 	points : function(){
- 		return Rankingset.findOne({"playerUserId" : this._id}).points;
- 	},
+  positioning : function(){
+    var table = getRanking();
+    var userID = this._id;
+    for (i in table){
+        if (table[i].userId == userID){
+          var pos = Number(i)+Number(1);
+          return Number(pos);
+        }
+    }
+    console.log(table);
+  },
   avatar : function(){
     return Images.findOne({"_id" : this.profile.avatar});
   },

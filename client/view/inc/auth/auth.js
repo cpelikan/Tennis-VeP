@@ -7,6 +7,7 @@ Template.register.onRendered(function() {
 		    ],
 		        overlay: true
 		  });	
+		$('body').addClass('auth');
 });
 
 
