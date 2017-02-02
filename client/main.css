@@ -58,7 +58,7 @@ text-shadow: -1px -1px 0 #FFF,
 .dropdown-menu{z-index:10;}
 
 
-/**/
+/*
 body {background:#ECECEC;}
 a, a:link, a:visited, a:hover, a:focus{color:#00a651;}
 .navbar{margin-bottom:0;}
@@ -103,4 +103,4 @@ a, a:link, a:visited, a:hover, a:focus{color:#00a651;}
 
 @media (min-width: 767px){
 	.picZone{min-height:20rem;}
-}
+}*/

@@ -13,3 +13,7 @@ Meteor.publish('rankingset', function() {
 Meteor.publish('notifications', function() {
   return Notifications.find();
 });
+
+Meteor.publish('reservations', function() {
+  return Reservations.find();
+});
