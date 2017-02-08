@@ -104,3 +104,55 @@ a, a:link, a:visited, a:hover, a:focus{color:#00a651;}
 @media (min-width: 767px){
 	.picZone{min-height:20rem;}
 }*/
+
+.fc-event-container {
+  padding: 5px !important;
+}
+
+.fc-event {
+  padding: 5px 10px;
+  border-color: #ddd;
+  background: #fff !important;
+}
+.fc-event  .fc-content {
+    color: #444;
+  }
+
+.fc-event  h4,
+.fc-event  h5 {
+    margin: 0;
+    font-weight: normal;
+  }
+
+.fc-event  h4 {
+    color: #666;
+    font-size: 13px;
+    line-height: 18px;
+    white-space: normal;
+  }
+
+.fc-event  h5 {
+    color: #888;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+ .fc-event .guest-count {
+    margin: 5px 0;
+  }
+
+  .fc-event p[class^="type-"] {
+    margin: 0;
+  }
+
+.fc-event  p[class="type-Corporate"] {
+    color: red;
+  }
+
+.fc-event  p[class="type-Wedding"] {
+    color: green;
+  }
+
+ .fc-event p[class="type-Birthday"] {
+    color: blue;
+  }
