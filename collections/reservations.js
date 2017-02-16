@@ -15,7 +15,10 @@ Meteor.methods({
   editBooking( booking ) {
     
     try {
-      return Reservations.update( booking._id, {
+      var idBooking = booking._id; 
+      delete booking._id;
+      return Reservations.update( idBooking, {
+        //$unset: booking._id,
         $set: booking
       });
     } catch ( exception ) {

@@ -57,8 +57,32 @@ text-shadow: -1px -1px 0 #FFF,
 	border-color:rgba(255,255,255,0); background:rgba(255,255,255,.75); }
 .dropdown-menu{z-index:10;}
 
+.fc-event-container {padding: 5px !important;}
 
-/*
+.fc-event {padding: 5px 10px;border-color: #ddd;background: #fff;}
+
+.fc-event  .fc-content {color: #444;}
+
+.fc-event  h4,
+.fc-event  h5 {margin: 0;font-weight: normal;}
+
+.fc-event  h4 {color: #666;font-size: 13px;line-height: 18px;white-space: normal;}
+
+.fc-event  h5 {color: #888;font-size: 12px;margin-top: 5px;}
+
+.fc-event .guest-count {margin: 5px 0;}
+
+.fc-event p[class^="type-"] {margin: 0;}
+
+.fc-event  p[class="type-Corporate"] {color: red;}
+
+.fc-event  p[class="type-Wedding"] {color: green;}
+
+.fc-event p[class="type-Birthday"] {color: blue;}
+
+.fc-toolbar h2{font-size:2rem; padding:1rem; color:#808080; font-variant: small-caps;}
+
+
 body {background:#ECECEC;}
 a, a:link, a:visited, a:hover, a:focus{color:#00a651;}
 .navbar{margin-bottom:0;}
@@ -97,62 +121,14 @@ a, a:link, a:visited, a:hover, a:focus{color:#00a651;}
 .badge{background:#e1613a;}
 .full{background:rgba(0,0,0,0.05);}
 .full:focus{background:#FFF;}
+
+.fc-event {background:#00a651;}
+
 @media (max-width: 767px){
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a {color: #FFF;}
 }
 
 @media (min-width: 767px){
 	.picZone{min-height:20rem;}
-}*/
-
-.fc-event-container {
-  padding: 5px !important;
 }
 
-.fc-event {
-  padding: 5px 10px;
-  border-color: #ddd;
-  background: #fff !important;
-}
-.fc-event  .fc-content {
-    color: #444;
-  }
-
-.fc-event  h4,
-.fc-event  h5 {
-    margin: 0;
-    font-weight: normal;
-  }
-
-.fc-event  h4 {
-    color: #666;
-    font-size: 13px;
-    line-height: 18px;
-    white-space: normal;
-  }
-
-.fc-event  h5 {
-    color: #888;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-
- .fc-event .guest-count {
-    margin: 5px 0;
-  }
-
-  .fc-event p[class^="type-"] {
-    margin: 0;
-  }
-
-.fc-event  p[class="type-Corporate"] {
-    color: red;
-  }
-
-.fc-event  p[class="type-Wedding"] {
-    color: green;
-  }
-
- .fc-event p[class="type-Birthday"] {
-    color: blue;
-  }
