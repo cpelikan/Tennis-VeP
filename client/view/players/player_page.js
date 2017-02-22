@@ -114,7 +114,37 @@ Template.playerPage.events({
                 	alert("Profilo aggiornato")    
                 }
         });
-	}
+	},
+    'click #changePswEvnt': function (e, template) {
+      
+      var errorMessage = "Password incorrect";
+      var oldPassword = document.getElementById('oldPassword').value;
+      var newPassword = document.getElementById('newPassword').value;
+      var newPasswordConfirm = document.getElementById('newPasswordConfirm').value;
+      
+      var newPasswordIsValid = newPassword.length > 0 && newPassword != ' ' && newPassword == newPasswordConfirm;
+      
+      console.log(newPassword.lenght > 0 , newPassword != ' ' ,newPassword == newPasswordConfirm )
+
+      if(newPasswordIsValid){
+        console.log(0 , newPassword == newPasswordConfirm);
+        Accounts.changePassword(oldPassword, newPassword, function(error){
+          if(error){
+            console.log(1,error);  
+            alert(errorMessage);
+          }
+
+          else{
+            alert('ok');
+           } 
+        });
+      }
+
+      else{
+        alert(errorMessage);
+      }
+  
+  }
 });
 
 
@@ -176,3 +206,7 @@ Template.uploadAvatar.events({
     }
   }
 });
+
+/*Template.changePsw.events({
+  
+})*/

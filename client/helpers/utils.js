@@ -1,3 +1,7 @@
+Template.registerHelper('currentRouteIs', function (route) { 
+  return Router.current().route.getName() === route; 
+});
+
 getRanking = function(){
 var collect = Rankingset.find({}, {sort: {submitted: -1}}).fetch();
         
@@ -18,33 +22,30 @@ var collect = Rankingset.find({}, {sort: {submitted: -1}}).fetch();
           players.push(p) ;          
 
       }   
+ 
 
-     
-      /*
-       var byPoints = players.sort(
+      var byPoints = players.sort(
         function(a, b) {
-            return a.matchesWon - b.matchesWon
-        });
-          
-      var tmpPoints = byPoints.reverse(); 
+            return a.points - b.points;
+      });
 
 
-      var sortTmp = tmpPoints.sort(
+      var byCups = byPoints.sort(
         function(a, b) {
-            return a.cupsWon - b.cupsWon
-        });
-          
-      var tmp = sortTmp.reverse(); 
-       */
+          if (a.points == b.points){
+            return a.cupsWon - b.cupsWon;
+          }
+      });
 
-      var sort = players.sort(
+      var byMatches = byCups.sort(
         function(a, b) {
-            return a.points - b.points
-        });
-          
-      var output = sort.reverse(); 
+          if (a.cupsWon == b.cupsWon){
+            return a.matchesWon - b.matchesWon;   
+          }
+      });
 
+      var output = byMatches.reverse(); 
 
-
-    return  output;
+      return  output;
+    
     }

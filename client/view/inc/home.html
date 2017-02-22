@@ -9,6 +9,8 @@
         <div class="col-md-5 boxHP">
           <h4>Ciao <a href="{{pathFor route='playerPage' _id=currentUser._id}}">{{currentUser.username}}</a></h4>
           {{> welcome}}
+
+
         </div>
         
         <div class="col-md-2">&nbsp;</div>
@@ -42,4 +44,6 @@
      <strong>{{winnerRatio}}</strong>
    </p>
    {{/if}}
+
+    <button id="testEmail">Test Email</button>
 </template>

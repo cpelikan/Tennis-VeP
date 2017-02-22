@@ -1,5 +1,5 @@
 <template name="header">
-    <div class="navbar navbar-default" role="navigation">
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">T VeP</a>
@@ -16,13 +16,13 @@
         {{#if currentUser}}
             <div class="navbar-collapse collapse">
                 
-                    <ul class="nav navbar-nav">
-                        <li><a href="{{pathFor 'cupSubmit'}}">Nuova sfida</a></li>
-                        <li><a href="{{pathFor 'cupsList'}}">Sfide</a></li>
-                        <li><a href="{{pathFor 'stats'}}">Ranking</a></li>
-                        <li><a href="{{pathFor 'playersList'}}">Giocatori</a></li>
-                        <li><a href="{{pathFor 'booking'}}">Prenota</a></li>
-                    </ul>
+                <ul class="nav navbar-nav">
+                    <li class="{{#if currentRouteIs 'cupSubmit'}}active{{/if}}"><a href="{{pathFor 'cupSubmit'}}">Nuova sfida</a></li>
+                    <li class="{{#if currentRouteIs 'cupsList'}}active{{/if}}"><a href="{{pathFor 'cupsList'}}">Sfide</a></li>
+                    <li class="{{#if currentRouteIs 'stats'}}active{{/if}}"><a href="{{pathFor 'stats'}}">Ranking</a></li>
+                    <li class="{{#if currentRouteIs 'playersList'}}active{{/if}}"><a href="{{pathFor 'playersList'}}">Giocatori</a></li>
+                    <li class="{{#if currentRouteIs 'booking'}}active{{/if}}"><a href="{{pathFor 'booking'}}">Prenota</a></li>
+                </ul>
                 
                 <ul class="nav navbar-nav navbar-right">
                 <!-- {{> loginButtons}} --> 

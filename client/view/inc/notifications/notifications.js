@@ -28,6 +28,7 @@ Template.notifications.helpers({
 
 Template.notification.helpers({
   notificationCupPath: function() {
+    //console.log("cup" , this)
     return Router.routes.cupPage.path({_id: this.cupId});
   },
   notificationAuthor: function() {

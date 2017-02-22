@@ -37,3 +37,14 @@ Template.welcome.helpers({
 	}
 
 });
+Template.welcome.events({
+
+	 'click button': function(e) {
+	 	Meteor.call('sendEmail',
+            'sergiello.bruni@gmail.com',
+            'team@tennis-vep.com',
+            'Hello from Meteor!',
+            'This is a test of Email.send.');
+	 }
+});
+

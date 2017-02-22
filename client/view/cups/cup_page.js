@@ -244,20 +244,21 @@ Template.cupPage.events({
                     };
 
                     updateRanking(arg);
+                    
                     createCupNotification(c, "cup_closed");
-                    console.log("done");
+                    //console.log("done");
                 }
             });
         }
 
         function checkWinner(thisCup) {
-            console.log("_____________________________________")
+           
             var tableCup = Session.get("tableCup_" + thisCup);
             var tableCupLeadWinning = tableCup[0].winning;
             var leaders = [];
 
-            console.log(tableCup);
-            console.log(tableCupLeadWinning);
+            //console.log(tableCup);
+            //console.log(tableCupLeadWinning);
 
             for (p in tableCup) {
                 if (tableCup[p].winning == tableCupLeadWinning) {
@@ -275,7 +276,7 @@ Template.cupPage.events({
             
             var leaders = checkWinner(thisCup);
 
-            console.log(leaders);
+            //console.log(leaders);
             if (leaders.length == 1) {
                 
                 alert("Il vincitore è " + leaders[0].username + "!");
@@ -330,26 +331,26 @@ Template.cupPage.events({
 
             var push = getWhere(where);
 
-            console.log("push-------->");
+            /*console.log("push-------->");
             console.log(push)
-            console.log(user);
+            console.log(user);*/
             
             var ranking = Rankingset.findOne({
                 playerUserId: user
             });
-            console.log(ranking)
-            console.log(bonus);
+            /*console.log(ranking)
+            console.log(bonus);*/
             Rankingset.update(ranking._id, {
                 $push: push
             });
-            console.log("weeee");
+ 
             Rankingset.update(ranking._id, {
                 $inc: {
                     points: bonus
                 }
             });
 
-            console.log("oooooo");
+
 
         }
 

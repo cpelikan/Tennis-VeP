@@ -10,12 +10,12 @@
 					<div class="level">{{level}}</div>
 
 					{{#if this.profile.avatar}}
-						<img src="{{avatar.link}}" alt="{{this.username}}" class="avatar" />
+						<span class="thumbnail"><img src="{{avatar.link}}" alt="{{this.username}}" class="avatar" /></span>
 					{{/if}}	
 					
 				</div>	
 				{{#if isCurrentUser}}
-				{{> uploadAvatar}}
+					{{> uploadAvatar}}
 				{{/if}}
 			</div>	
 
@@ -79,13 +79,47 @@
 						<label class="form-label" >Email </label>
 					  	<h4>{{email}}</h4>
 					</div>
+					
 				{{/if}}
 
 
 			</div>
 
+			{{#if isCurrentUser}}
+				<h4 class="row" data-toggle="collapse" data-target="#changePswPanel">Cambia  password</h4>
+				
+				<div id="changePswPanel" class="collapse">
+					<div class="row">
 
+						<div class="col-md-6">
+							<div class="form-group">	
+								<label class="form-label" >Password attuale</label>
+							  	<input type="password" id="oldPassword" value="" class="form-control" />	
+							</div>  	
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">	
+							  	<label class="form-label" >Nuova password</label>
+							  	<input type="password" id="newPassword" value="" class="form-control" />	
+							</div>  	
+						</div>	
+					</div>
+					<div class="row">
+						
+						<div class="col-md-6">	
+							<div class="form-group">	  	
+								<label class="form-label" >Conferma nuova password</label>
+							  	<input type="password" id="newPasswordConfirm" value="" class="form-control" />	
+							</div>
+						</div>	
 
+						<div class="col-md-6">
+							<a  class="btn btn-default" id="changePswEvnt" href="#">Cambia password</a>
+						</div>
+													
+					</div>
+				</div>	
+			{{/if}}	
 
 
 
@@ -93,75 +127,75 @@
 
 
 
-	<div class="col-md-4 form-group">
-		<label class="form-label">Indirizzo</label> 
-		 
-		
-		<div class="row">
-			<div class="col-xs-5">
-				Palazzina 
-				{{#if isCurrentUser}}
-					<select class="form-control" id="building">
-						{{#each b in address.buildings}}
-							<option value="{{b}}" selected="{{#if selectedAddress 'building' b }} true {{/if}}">{{b}}</option>
-						{{/each}}
-					</select>	
-					{{else}}
-					{{#if this.profile.address.building}}  
-						<h4>{{this.profile.address.building}}</h4>
-					{{else}}
-						<h4>nd</h4>
-					{{/if}}
-				{{/if}}
-
-			</div>
+		<div class="col-md-4 form-group">
+			<label class="form-label">Indirizzo</label> 
+			 
 			
-			<div class="col-xs-3">
-				Piano 
-				{{#if isCurrentUser}}
-					<select class="form-control" id="floor">
-						{{#each f in address.floor}}
-							<option value="{{f}}" selected="{{#if selectedAddress 'floor' f }} true {{/if}}">{{f}}</option>
-						{{/each}}
-					</select>	
-					{{else}} 
-					{{#if this.profile.address.floor}}  
-					<h4>{{this.profile.address.floor}}</h4>
-					{{else}}
-						<h4>nd</h4>
+			<div class="row">
+				<div class="col-xs-4">
+					Palazzina 
+					{{#if isCurrentUser}}
+						<select class="form-control" id="building">
+							{{#each b in address.buildings}}
+								<option value="{{b}}" selected="{{#if selectedAddress 'building' b }} true {{/if}}">{{b}}</option>
+							{{/each}}
+						</select>	
+						{{else}}
+						{{#if this.profile.address.building}}  
+							<h4>{{this.profile.address.building}}</h4>
+						{{else}}
+							<h4>nd</h4>
+						{{/if}}
 					{{/if}}
-				{{/if}}
-			</div>
 
-			<div class="col-xs-4">
-				Interno 
-				{{#if isCurrentUser}}
-					<select class="form-control" id="int">
-						{{#each i in address.int}}
-							<option value="{{i}}"  selected="{{#if selectedAddress 'int' i }} true {{/if}}"> {{i}}</option>
-						{{/each}}
-					</select>	
-					{{else}} 
-						{{#if this.profile.address.int}}  
-						<h4>{{this.profile.address.int}}</h4>
-					{{else}}
-						<h4>nd</h4>
+				</div>
+				
+				<div class="col-xs-4">
+					Piano 
+					{{#if isCurrentUser}}
+						<select class="form-control" id="floor">
+							{{#each f in address.floor}}
+								<option value="{{f}}" selected="{{#if selectedAddress 'floor' f }} true {{/if}}">{{f}}</option>
+							{{/each}}
+						</select>	
+						{{else}} 
+						{{#if this.profile.address.floor}}  
+						<h4>{{this.profile.address.floor}}</h4>
+						{{else}}
+							<h4>nd</h4>
+						{{/if}}
 					{{/if}}
-				{{/if}}
+				</div>
+
+				<div class="col-xs-4">
+					Interno 
+					{{#if isCurrentUser}}
+						<select class="form-control" id="int">
+							{{#each i in address.int}}
+								<option value="{{i}}"  selected="{{#if selectedAddress 'int' i }} true {{/if}}"> {{i}}</option>
+							{{/each}}
+						</select>	
+						{{else}} 
+							{{#if this.profile.address.int}}  
+							<h4>{{this.profile.address.int}}</h4>
+						{{else}}
+							<h4>nd</h4>
+						{{/if}}
+					{{/if}}
+				</div>	
+
+
 			</div>	
-
-
-		</div>	
-		
-	</div>
-
-	{{#if isCurrentUser}}
-		<div class="col-md-8 form-group">
-		 	<label class="form-label" >Motto </label>
-		 	
-			<textarea id="claim" class="form-control">{{this.profile.claim}}</textarea>	
+			
 		</div>
-	{{/if}}
+
+		{{#if isCurrentUser}}
+			<div class="col-md-8 form-group">
+			 	<label class="form-label" >Motto </label>
+			 	
+				<textarea id="claim" class="form-control">{{this.profile.claim}}</textarea>	
+			</div>
+		{{/if}}
 
 	</div>	
 

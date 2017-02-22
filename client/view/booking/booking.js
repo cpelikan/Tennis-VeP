@@ -40,6 +40,14 @@ function getGlist(list){
     return gList;
   }
 
+function adaptCalendar(){
+  if ($(window).width() < 514){
+        $('#calendar').fullCalendar( 'changeView', 'agendaDay' );
+    } else {
+        $('#calendar').fullCalendar( 'changeView', 'month' );
+    }
+}
+
 Template.booking.onRendered(function() {
       //moment.locale('it');
 		 $( '#calendar' ).fullCalendar({
@@ -56,10 +64,15 @@ Template.booking.onRendered(function() {
 		      }
 		    },
 		     eventRender( booking, element ) {
-		      element.find( '.fc-content' ).html(
-		        `<h4>${ booking.author }</h4>
+		      var start = moment(booking.start).format('HH:mm');
+          var end = booking.start.clone().add(1, 'hour');
+          element.find( '.fc-content' ).html(
+		        /*`<h4><strong>${ booking.start }</strong>${ booking.author }</h4>
 		         <p class="guest-count">${ booking.title }</p>
-		        `
+		        `*/
+            '<b>' + start + ' - ' + moment(end).format('HH:mm') +  '</b><br />' 
+            + booking.author +'<br />'
+            + booking.title
 		      );
 		    },
 	      dayClick( date ) {
@@ -142,7 +155,10 @@ Template.booking.onRendered(function() {
             }  
         }*/
         selectOverlap : false,
-
+        windowResize: function(view) {
+          adaptCalendar();
+        },
+         aspectRatio: 2
 		  });
 
 		  Tracker.autorun( () => {
