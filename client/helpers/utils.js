@@ -3,7 +3,9 @@ Template.registerHelper('currentRouteIs', function (route) {
 });
 
 getRanking = function(){
-var collect = Rankingset.find({}, {sort: {submitted: -1}}).fetch();
+var collect = Rankingset.find({}, {
+      sort: {points: -1}
+    }).fetch();
         
     var players = [];
      
@@ -22,30 +24,25 @@ var collect = Rankingset.find({}, {sort: {submitted: -1}}).fetch();
           players.push(p) ;          
 
       }   
- 
-
-      var byPoints = players.sort(
+          
+      /*var subFilter = players.sort(
         function(a, b) {
-            return a.points - b.points;
-      });
+            if(a.points == b.points )
+            return a.matchesWon - b.matchesWon
+        });  
 
-
-      var byCups = byPoints.sort(
+      console.log('SuB filter' , subFilter);
+      */
+     
+      /*var sort = players.sort(
         function(a, b) {
-          if (a.points == b.points){
-            return a.cupsWon - b.cupsWon;
-          }
-      });
-
-      var byMatches = byCups.sort(
-        function(a, b) {
-          if (a.cupsWon == b.cupsWon){
-            return a.matchesWon - b.matchesWon;   
-          }
-      });
-
-      var output = byMatches.reverse(); 
-
+            return a.points - b.points
+        });
+          
+      var output = sort.reverse(); 
+     
       return  output;
+       */
     
+      return players;
     }

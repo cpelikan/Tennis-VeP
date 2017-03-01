@@ -86,9 +86,14 @@
 			</div>
 
 			{{#if isCurrentUser}}
-				<h4 class="row" data-toggle="collapse" data-target="#changePswPanel">Cambia  password</h4>
-				
-				<div id="changePswPanel" class="collapse">
+				<div class="row">
+					<div class="col-md-12" >
+						<div class="form-group"><label class="form-label" data-toggle="collapse" data-target="#changePswPanel">Cambia  password</label></div>
+					</div>
+				</div>
+
+				<div id="changePswPanel" class="collapse" syle="margin-top:-1rem;">
+					<div class="form-group">
 					<div class="row">
 
 						<div class="col-md-6">
@@ -117,6 +122,7 @@
 							<a  class="btn btn-default" id="changePswEvnt" href="#">Cambia password</a>
 						</div>
 													
+					</div>
 					</div>
 				</div>	
 			{{/if}}	

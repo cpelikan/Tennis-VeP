@@ -20,7 +20,6 @@ Template.playerPage.helpers({
 			 else { return !average; }
 			}
 
-	
 
  		var rs = Rankingset.findOne({playerUserId : this._id});
  		var points = rs.points;
@@ -124,25 +123,36 @@ Template.playerPage.events({
       
       var newPasswordIsValid = newPassword.length > 0 && newPassword != ' ' && newPassword == newPasswordConfirm;
       
-      console.log(newPassword.lenght > 0 , newPassword != ' ' ,newPassword == newPasswordConfirm )
+      function resetField(){
+        
+      }
+
+
+      console.log(newPasswordIsValid, newPassword.length > 0 , newPassword != ' ' ,newPassword == newPasswordConfirm )
 
       if(newPasswordIsValid){
+        
         console.log(0 , newPassword == newPasswordConfirm);
-        Accounts.changePassword(oldPassword, newPassword, function(error){
+        Accounts.changePassword(oldPassword, newPassword, function(error, id){
           if(error){
             console.log(1,error);  
-            alert(errorMessage);
+            alert(error.reason);
+            return;
           }
 
-          else{
             alert('ok');
-           } 
+            
+            /*Router.go('playerPage', {
+                _id: id
+            });*/
         });
+
+         return;
       }
 
-      else{
+     
         alert(errorMessage);
-      }
+        
   
   }
 });
